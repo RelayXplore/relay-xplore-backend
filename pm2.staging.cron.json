@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "relay_xplore_api_staging_cron",
+      "script": "dist/src/main.js",
+      "time": true,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "env": {
+        "PORT": 6036,
+        "NODE_ENV": "testnet",
+        "APP_NAME": "cron"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "relay_xplore_api_prod",
+      "script": "dist/src/main.js",
+      "time": true,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "instances": 6,
+      "exec_mode": "cluster",
+      "env": {
+        "PORT": 3035,
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}

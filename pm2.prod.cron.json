@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "relay_xplore_api_prod_cron",
+      "script": "dist/src/main.js",
+      "time": true,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "env": {
+        "PORT": 3036,
+        "NODE_ENV": "production",
+        "APP_NAME": "cron"
+      }
+    }
+  ]
+}

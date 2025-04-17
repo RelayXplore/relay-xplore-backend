@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "relay_xplore_api_staging",
+      "script": "dist/src/main.js",
+      "time": true,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "instances": 4,
+      "exec_mode": "cluster",
+      "env": {
+        "PORT": 6035,
+        "NODE_ENV": "testnet"
+      }
+    }
+  ]
+}
