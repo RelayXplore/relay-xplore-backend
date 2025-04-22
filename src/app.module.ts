@@ -27,7 +27,10 @@ const redisOptions = {
       envFilePath: '.env',
       validationSchema: Joi.object({
         PORT: Joi.number(),
-        NODE_ENV: Joi.string().valid('testnet', 'production').required(),
+        NODE_ENV: Joi.string()
+          .valid('test', 'development', 'production')
+          .required(),
+        NETWORK: Joi.string().valid('testnet', 'mainnet').optional(),
         POSTGRES_HOST: Joi.string().required(),
         POSTGRES_PORT: Joi.number().required(),
         POSTGRES_USER: Joi.string().required(),
