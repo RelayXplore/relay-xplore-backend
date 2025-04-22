@@ -8,6 +8,8 @@ import logger from './utils/logger';
 const { PORT = 4000, API_VERSION = 'v1' } = process.env;
 
 async function bootstrap() {
+  console.log('POSTGRES_HOST', process.env.POSTGRES_HOST);
+
   const app = await NestFactory.create(AppModule);
 
   app.enableCors();
