@@ -20,7 +20,7 @@ services:
       JWT_EXPIRATION_IN: ${JWT_EXPIRATION:-7d}
     depends_on:
       - postgres
-    command: npm run dev
+    command: npm run start:prod
 
   migrate:
     build:
