@@ -4,6 +4,15 @@
 
 The RelayXplore API is a backend service that provides comprehensive data and analytics for relay networks. It offers endpoints to track, analyze, and monitor relay operations, performance metrics, and network statistics.
 
+
+## Deployed Environments
+
+| Environment | URL                          |
+|-------------|------------------------------|
+| Development | http://api-dev.relayxplore.com   |
+| Staging     | http://api-staging.relayxplore.com |
+| Production  | http://api.relayxplore.com       |
+
 ## Technologies used
 
 - NestJS
