@@ -29,33 +29,3 @@ jobs:
         run: npm run build:ci
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-
-  deploy:
-    if: |
-      always() && 
-      needs.build.result == 'success' &&
-      github.ref == 'refs/heads/main'
-
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    environment: production
-    needs: [build]
-
-    steps:
-      - name: Deploy Prediction API
-        uses: appleboy/ssh-action@v0.1.2
-        with:
-          host: ${{ secrets.SERVER_IP_PROD }}
-          key: ${{ secrets.SERVER_SSH_KEY_PROD }}
-          username: ${{ secrets.SERVER_SSH_USERNAME_PROD }}
-          command_timeout: '30m'
-
-          script: |
-            cd /var/www/api.predchain.com
-            sudo git add .
-            sudo git reset --hard origin/main
-            sudo git checkout main 
-            sudo git pull origin main
-            yarn
-            yarn migrate:run
-            yarn pm2:deploy:prod && yarn pm2:deploy:prod:cron

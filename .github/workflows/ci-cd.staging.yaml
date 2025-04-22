@@ -29,33 +29,3 @@ jobs:
         run: npm run build:ci
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-
-  deploy:
-    if: |
-      always() && 
-      needs.build.result == 'success' &&
-      github.ref == 'refs/heads/develop'
-
-    name: Deploy to Staging
-    runs-on: ubuntu-latest
-    environment: development
-    needs: [build]
-
-    steps:
-      - name: Deploy Prediction API
-        uses: appleboy/ssh-action@v0.1.2
-        with:
-          host: ${{ secrets.SERVER_IP_STAGING }}
-          key: ${{ secrets.SERVER_SSH_KEY_STAGING }}
-          username: ${{ secrets.SERVER_SSH_USERNAME_STAGING }}
-          command_timeout: '30m'
-
-          script: |
-            cd /var/www/staging-api.predchain.com
-            sudo git add .
-            sudo git reset --hard origin/develop
-            sudo git checkout develop 
-            sudo git pull origin develop
-            yarn
-            yarn migrate:run
-            yarn pm2:deploy:staging && yarn pm2:deploy:staging:cron
