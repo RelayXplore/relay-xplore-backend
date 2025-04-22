@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import logger from './utils/logger';
 
-const { PORT = 3000, API_VERSION = 'v1' } = process.env;
+const { PORT = 4000, API_VERSION = 'v1' } = process.env;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: api_prod
+    ports:
+      - '4000:4000'
+    environment:
+      PORT: ${PORT:-4000}
+      NODE_ENV: ${NODE_ENV:-production}
+      POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-rx_prod}
+      JWT_SECRET: ${JWT_SECRET:-sdsadasdsdasdasdasd}
+      JWT_EXPIRATION_IN: ${JWT_EXPIRATION:-7d}
+    depends_on:
+      - postgres
+    command: npm run dev
+
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile.migrate
+    container_name: api_prod_migrate
+    depends_on:
+      - postgres
+    environment:
+      PORT: ${PORT:-4001}
+      NODE_ENV: ${NODE_ENV:-production}
+      POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-rx_prod}
+    command: ['npm', 'run', 'migrate:run']
+
+  postgres:
+    image: postgres:16
+    container_name: postgres_prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-rx_prod}
+    ports:
+      - '5432:5432'
+    volumes:
+      - ../postgres_data_prod:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_prod:
