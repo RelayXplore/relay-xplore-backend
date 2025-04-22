@@ -9,9 +9,9 @@ The RelayXplore API is a backend service that provides comprehensive data and an
 
 | Environment | URL                          |
 |-------------|------------------------------|
-| Development | http://api-dev.relayxplore.com   |
-| Staging     | http://api-staging.relayxplore.com |
-| Production  | http://api.relayxplore.com       |
+| Development | (api-dev.relayxplore.com)[http://api-dev.relayxplore.com]   |
+| Staging     | (api-staging.relayxplore.com)[http://api-staging.relayxplore.com] |
+| Production  | (api-staging.relayxplore.com)[http://api.relayxplore.com]       |
 
 ## Technologies used
 
