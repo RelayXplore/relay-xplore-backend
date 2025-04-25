@@ -3,16 +3,18 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-store';
+import { BullModule } from '@nestjs/bullmq';
+import * as Joi from 'joi';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import * as Joi from 'joi';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ProvidersModule } from './modules/providers/providers.module';
+import { OnchainTransactionsModule } from './modules/onchain-transactions/onchain-transactions.module';
 
 const redisOptions = {
   host: process.env.REDIS_HOST || 'localhost',
-  port: process.env.REDIS_PORT || 6379,
+  port: Number(process.env.REDIS_PORT) || 6379,
   ttl: Number(process.env.RATE_LIMIT_TTL_SECONDS) || 60,
 };
 
@@ -38,10 +40,17 @@ const redisOptions = {
         POSTGRES_DB: Joi.string().required(),
       }),
     }),
+    BullModule.forRoot({
+      connection: {
+        host: redisOptions.host,
+        port: redisOptions.port,
+      },
+    }),
     DatabaseModule,
     ScheduleModule.forRoot(),
     AuthModule,
     ProvidersModule,
+    OnchainTransactionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

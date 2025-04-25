@@ -1,9 +1,5 @@
 import { SupportedChain } from '@constants/shared';
-import { IsEnum, IsOptional } from 'class-validator';
-
-import { IsNumber } from 'class-validator';
-
-import { IsString } from 'class-validator';
+import { IsEnum, IsNumber, IsString } from 'class-validator';
 
 export class DepositDto {
   @IsString()
