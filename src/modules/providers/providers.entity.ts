@@ -6,7 +6,9 @@ import {
   CreateDateColumn,
   EntityRepository,
   Repository,
+  OneToMany,
 } from 'typeorm';
+import { OnchainTransaction } from '../onchain-transactions/onchain-transactions.entity';
 
 @Entity('providers')
 export class Provider {
@@ -27,6 +29,12 @@ export class Provider {
 
   @Column({ nullable: true, type: 'varchar' })
   email: string;
+
+  @OneToMany(
+    () => OnchainTransaction,
+    (onchainTransaction) => onchainTransaction.provider,
+  )
+  onchainTransactions: OnchainTransaction[];
 
   @CreateDateColumn({
     type: 'timestamp',
