@@ -9,7 +9,9 @@ describe('OnchainTransactionsService', () => {
       providers: [OnchainTransactionsService],
     }).compile();
 
-    service = module.get<OnchainTransactionsService>(OnchainTransactionsService);
+    service = module.get<OnchainTransactionsService>(
+      OnchainTransactionsService,
+    );
   });
 
   it('should be defined', () => {

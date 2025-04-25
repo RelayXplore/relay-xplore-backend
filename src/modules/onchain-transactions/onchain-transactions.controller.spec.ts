@@ -11,7 +11,9 @@ describe('OnchainTransactionsController', () => {
       providers: [OnchainTransactionsService],
     }).compile();
 
-    controller = module.get<OnchainTransactionsController>(OnchainTransactionsController);
+    controller = module.get<OnchainTransactionsController>(
+      OnchainTransactionsController,
+    );
   });
 
   it('should be defined', () => {
