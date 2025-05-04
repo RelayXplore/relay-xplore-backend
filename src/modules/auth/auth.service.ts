@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
+import { ApiKeyService } from '../api_keys/api-key.service';
 import { AuthMessage, AuthMessageRepository } from './auth-message.entity';
 import {
   AuthToken,
@@ -29,6 +30,8 @@ export class AuthService {
     public readonly authTokenRepository: AuthTokenRepository,
     @Inject(forwardRef(() => JwtService))
     public readonly jwtService: JwtService,
+    @Inject(forwardRef(() => ApiKeyService))
+    public readonly apiKeyService: ApiKeyService,
   ) {}
 
   async findAccessToken(token: string): Promise<AuthToken> {
@@ -65,6 +68,8 @@ export class AuthService {
       foundProvider = await this.providerRepository.save({
         walletAddress,
       });
+
+      await this.apiKeyService.create(foundProvider.walletAddress)
     }
 
     const { jwtToken } = await this.generateJWT(foundProvider);

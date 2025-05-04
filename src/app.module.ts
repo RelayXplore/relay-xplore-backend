@@ -9,6 +9,7 @@ import * as Joi from 'joi';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ProvidersModule } from './modules/providers/providers.module';
+import { ApiKeyModule } from './modules/api_keys/api-key.module';
 
 const redisOptions = {
   host: process.env.REDIS_HOST || 'localhost',
@@ -42,6 +43,7 @@ const redisOptions = {
     ScheduleModule.forRoot(),
     AuthModule,
     ProvidersModule,
+    ApiKeyModule
   ],
   controllers: [AppController],
   providers: [AppService],
