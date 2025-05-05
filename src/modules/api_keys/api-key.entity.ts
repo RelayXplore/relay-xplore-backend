@@ -8,9 +8,6 @@ export class ApiKeyEntity {
   @Column({ type: 'varchar', nullable: false })
   providerWalletAddress: string;
 
-  @Column({ type: 'varchar', nullable: false })
-  name: string;
-
   @Column({ type: 'varchar', unique: true })
   key: string;
 
@@ -19,10 +16,6 @@ export class ApiKeyEntity {
 
   @Column({ type: 'int', nullable: false })
   currentCount: number;
-
-
-  @Column({ type: 'boolean' })
-  isActive: boolean;
 
   @CreateDateColumn({
       type: 'timestamp',

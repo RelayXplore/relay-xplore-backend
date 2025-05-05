@@ -1,9 +1,9 @@
-// import { IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
-// export class CreateApiKeyDto {
-//   @IsString()
-//   name: string;
+export class ValidateApiKeyDto {
+  @IsString()
+  key: string;
 
-//   @IsString()
-//   walletAddress: string
-// }
+  @IsString()
+  walletAddress: string
+}
