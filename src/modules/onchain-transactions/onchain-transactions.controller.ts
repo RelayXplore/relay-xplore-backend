@@ -24,9 +24,9 @@ export class OnchainTransactionsController {
     });
   }
 
-  @Post()
-  async queueRequest(@Body() data: OnchainTransactionDto) {
-    return this.onchainTransactionsService.queueRequest(data);
+  @Post('/submit')
+  async submitRequest(@Body() data: OnchainTransactionDto) {
+    return this.onchainTransactionsService.submitRequest(data);
   }
 
   @Get('/:jobId/job-status')
