@@ -81,7 +81,7 @@ export class OnchainTransactionsService {
     };
   }
 
-  async queueRequest(data: OnchainTransactionDto) {
+  async submitRequest(data: OnchainTransactionDto) {
     const providerFound = await this.providerRepository.findOne({
       where: { walletAddress: toChecksumAddress(data.providerWalletAddress) },
     });
