@@ -11,6 +11,7 @@ import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ProvidersModule } from './modules/providers/providers.module';
 import { OnchainTransactionsModule } from './modules/onchain-transactions/onchain-transactions.module';
+import { SubscriptionsModule } from './modules/subscriptions/subscriptions.module';
 
 const redisOptions = {
   host: process.env.REDIS_HOST || 'localhost',
@@ -51,6 +52,7 @@ const redisOptions = {
     AuthModule,
     ProvidersModule,
     OnchainTransactionsModule,
+    SubscriptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
