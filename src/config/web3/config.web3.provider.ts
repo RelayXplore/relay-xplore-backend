@@ -5,6 +5,7 @@ import { SupportedChain } from '../../constants/shared';
 export interface IWeb3InitParams {
   chainId: number;
   gaslessRelayerContractAddress: string;
+  subscriptionContractAddress: string;
   rpcUrl: string;
   gaslessRelayerContract: Contract;
   web3: Web3;

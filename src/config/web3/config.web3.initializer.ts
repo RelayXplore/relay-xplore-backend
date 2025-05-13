@@ -52,6 +52,8 @@ export class Web3Config implements IWeb3InitProvider {
       const chainId = chainConfig.testnet.chainId;
       const gaslessRelayerContractAddress =
         chainConfig.testnet.gaslessRelayerContractAddress;
+      const subscriptionContractAddress =
+        chainConfig.testnet.subscriptionContractAddress;
       const rpcUrl = chainConfig.testnet.rpcUrl;
       const web3 = new Web3(rpcUrl);
 
@@ -64,6 +66,7 @@ export class Web3Config implements IWeb3InitProvider {
       return {
         chainId,
         gaslessRelayerContractAddress,
+        subscriptionContractAddress,
         rpcUrl,
         gaslessRelayerContract,
         web3,
@@ -73,6 +76,8 @@ export class Web3Config implements IWeb3InitProvider {
     const chainId = chainConfig.mainnet.chainId;
     const gaslessRelayerContractAddress =
       chainConfig.mainnet.gaslessRelayerContractAddress;
+    const subscriptionContractAddress =
+      chainConfig.mainnet.subscriptionContractAddress;
     const rpcUrl = chainConfig.mainnet.rpcUrl;
     const web3 = new Web3(rpcUrl);
 
@@ -85,6 +90,7 @@ export class Web3Config implements IWeb3InitProvider {
     return {
       chainId,
       gaslessRelayerContractAddress,
+      subscriptionContractAddress,
       rpcUrl,
       gaslessRelayerContract,
       web3,

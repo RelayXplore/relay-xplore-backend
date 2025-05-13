@@ -9,6 +9,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { OnchainTransaction } from '../onchain-transactions/onchain-transactions.entity';
+import { Subscription } from '../subscriptions/subscription.entity';
 
 @Entity('providers')
 export class Provider {
@@ -35,6 +36,9 @@ export class Provider {
     (onchainTransaction) => onchainTransaction.provider,
   )
   onchainTransactions: OnchainTransaction[];
+
+  @OneToMany(() => Subscription, (subscription) => subscription.provider)
+  subscriptions: Subscription[];
 
   @CreateDateColumn({
     type: 'timestamp',
